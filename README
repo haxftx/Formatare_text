@@ -1,0 +1,61 @@
+Formatare text:
+In linia de comanda primim 3 parametri, primul - funtiile apicabile textului(
+se vor executa maxim 10), fisierul .txt si fiserul pentru rezultat.
+W max_line_length - face liniile sa fie de max_line_length, fara a trunchia
+cuvintele sau a fi prea lungi liniile infara de ultima linie.
+C [start_line [end_line]] - center foloseste cea  mai lunga linie din fisier
+poate sa se execute pe tot fisierul de la o linie sau intr-un interval
+L [start_line [end_line]] - align left face alinierea la stanga a textului
+R [start_line [end_line]] - align right foloseste cea mai lunga linie ca
+referinta si aliniaza la dreapta textul
+J [start_line [end_line]] - justify foloseste cea mai lunga linie din fisier
+si alinieaza liniile si la dreapta si la stanga fii spatii excihilibrate intre
+cuvinte.
+P indent_length [start_line [end_line]] - paragrafs indeteaza prima linie 
+dintr-un paragraf
+I list_type special_character [start_line [end_line]] - liste formateaza
+liniile corespunzatoare ca pe o lista aliniata la stanga cu indicii 
+list_type tipul de lista(n - numerotata, a|A - alfabetica, b - bullet), iar
+special_character caracterul de bullet sau dupa lista n, a|A
+O list_type special_character ordering [start_line [end_line]] - liste ordonate
+ca liste doar ca in dependeta de ordering (a - crescator, z - descrescator)
+face ordonarea alfabetica a elementelor din lista
+
+Prentru inceput am luat 3 matrici: 1 - pentru citirea datelor din fiserul input.
+2 - pentru resultatul final si 3 - originalul din input pentru cazul de erori.
+Citesc din fisierul input in matrice apoi copiez in cea de-a treia.
+Citesc argumentul cu condiitile care trebuie sa le efectuez asupra temei:
+1. Fac un strtock si salvez operatiile intr-o matrice si numarul lor, 
+   daca numarul lor e mai mare ca 10 fac doar 10, facand un for.
+2. Parcurg matricea cu operatii si fac un strtock pentru fiecare linie din
+   matrice si salvez intr-o alta matrice tipul functie si parametrii ei.
+3. Verific ce tip de funtie am si o apelez, dupa apelare golesc matricea
+   de paramtri.
+4. La sfarsit tratez daca am erori sau nu.
+5. Scriu in fisierul final.
+
+Functiile:
+1. Wrap - parcurg toata matricea initiala si fiecare linie o transform 
+   intr-o matrice de cuvinte, pe care le scriu in matricea rezultanta,
+   atata timp cat mai incape urmatorul cuvant. Daca e paragraf copiez in linia
+   rezultanta spatiile de la inceput. In cazul mai multor operatii consecutive
+   de wrap am ales sa o fac doar pe ultima, deoarece doar ea are importanta si
+   astfel salvez timp de executie si eficientizam programul.
+2. Align left - am parcurs toata matricea initiala si am copiat in 
+   matricea rezultanta liniile din original fara numarul de spatii 
+   de la inceputul fiecarei linii.
+3. Align right - pentru alinierea la dreapta am parcurs fiecare linie
+   si inversam linia pentru a adauga spatii la sfarsit, numarul de spatii 
+   necesare pentru a fi de lungimea liniei maxime si dupa o inversam inapoi.
+4. Center - funtia este asemanatoare la align right doar ca numarul de spatii
+   necesare de adaugat este injumatatit.
+5. Justify - fac fiecarei linie align left apoi calculez numarul de spatii 
+   necesare la redistribuire intre cuvinte si le adaug dupa fiecare cuvant.
+   Am spart fiecare linie intr-o matrice de cuvinte.
+6. Paragrafs - pentru paragraf am folosit un sir de carctere auxiliar care avea
+   la inceput numarul de spatii necesare pentru paragraf.
+7. Liste - pentru liste am folosit o matrice auxiliara in care formatam liniile
+   in dependeta de tipul listei si apoi copiam linia in rezultant.
+8. Liste ordonate - este la fel ca liste doar ca inainte de acesta sortez in
+   dependenta de tipul ordonarii.
+In fiecare funtie tratez cazurile de erori pentru a sti daca exista sau nu.
